@@ -10,6 +10,7 @@
     "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^6.26.1",
     "react-scripts": "3.4.1",
     "socket.io": "4",
     "socket.io-client": "4"
