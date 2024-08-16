@@ -1,36 +1,29 @@
 import React from "react";
 import CoordinateListItem from "./CoordinateListItem";
-import {
-  checkIfSameCoordinate,
-  checkIfLstIncludesCoordinate,
-  whichShipCoordinateIsBelong,
-  findSinkShipNameOfCoordinate,
-} from "../../../../helpers";
+import { checkIfSameCoordinate, checkIfLstIncludesCoordinate, whichShipCoordinateIsBelong, findSinkShipNameOfCoordinate } from "../../../../helpers";
 import { MISSED, SELECTED, CONFIRMED, HIT } from "../../../../constants";
 
-const CoordinateList = ({
-  clickTile,
-  row,
-  placedShips,
-  chosenTiles,
-  shot,
-  myBoard,
-}) => {
+const CoordinateList = ({ clickTile, row, placedShips, chosenTiles, shot, myBoard }) => {
+
   const lst = [];
 
   for (let i = 0; i < 10; i++) {
     const coordinate = { row, column: i };
 
     const state = () => {
+
       const isShot = checkIfLstIncludesCoordinate(shot, coordinate);
+
       if (isShot) {
         const shipName = whichShipCoordinateIsBelong(placedShips, coordinate);
+
         if (shipName) {
           const isSink = findSinkShipNameOfCoordinate(
             placedShips,
             coordinate,
             shot
           );
+
           if (isSink) return { type: HIT, shipName };
           return { type: HIT, shipName: myBoard && shipName };
         }
@@ -50,15 +43,8 @@ const CoordinateList = ({
       return { type: null };
     };
 
-    lst.push(
-      <CoordinateListItem
-        {...{
-          state: state(),
-          key: i,
-          clickHandler: () => clickTile(coordinate),
-        }}
-      />
-    );
+    lst.push(<CoordinateListItem state={state()} key={i} clickHandler={() => clickTile(coordinate)} />);
+
   }
   return <div className="row">{lst}</div>;
 };

@@ -11,24 +11,16 @@ export const getLastElm = (arr) => {
   return lastElm;
 };
 
-export const checkIfSameCoordinate = (
-  { row: row1, column: column1 },
-  { row: row2, column: column2 }
-) => {
+export const checkIfSameCoordinate = ({ row: row1, column: column1 }, { row: row2, column: column2 }) => {
   const sameRow = row1 === row2;
   const sameColumn = column1 === column2;
   return sameRow && sameColumn;
 };
 
-export const checkIfLstIncludesCoordinate = (
-  coordinates,
-  checkedCoordinate
-) => {
+export const checkIfLstIncludesCoordinate = (coordinates, checkedCoordinate) => {
+
   for (const coordinate of coordinates) {
-    const coordinateFound = checkIfSameCoordinate(
-      coordinate,
-      checkedCoordinate
-    );
+    const coordinateFound = checkIfSameCoordinate(coordinate, checkedCoordinate);
     if (coordinateFound) return true;
   }
 };
@@ -52,10 +44,7 @@ export const isWinner = (ships, shot) => {
 export const whichShipCoordinateIsBelong = (ships, checkCoordinate) => {
   for (const index in ships) {
     const { coordinates, name } = ships[index];
-    const isOccupied = checkIfLstIncludesCoordinate(
-      coordinates,
-      checkCoordinate
-    );
+    const isOccupied = checkIfLstIncludesCoordinate(coordinates, checkCoordinate);
     if (isOccupied) return name.toLowerCase();
   }
 };
@@ -92,9 +81,7 @@ export const makeMsgForSelectingTiles = (name, numOfTiles) => {
 };
 
 export const makeMsgForSinkShip = (isMine, shipName) => {
-  const [subject, object] = isMine
-    ? ["You", "opponent's"]
-    : ["Opponent", "your"];
+  const [subject, object] = isMine ? ["You", "opponent's"] : ["Opponent", "your"];
   return `${subject} has sunk ${object} ${shipName}.`;
 };
 
@@ -111,12 +98,14 @@ export const makeMsgForShot = (isMine, ships, coordinate) => {
 export const validateShipTiles = (chosenTiles, var1, var2) => {
   const lst = [];
   const { [var1]: num } = chosenTiles[0];
+
   for (const { [var1]: val3, [var2]: val4 } of chosenTiles) {
     if (val3 !== num) return;
     lst.push(val4);
   }
 
   const orderedLst = lst.sort();
+
   for (let i = 0; i < orderedLst.length - 1; i++) {
     if (orderedLst[i] + 1 !== orderedLst[i + 1]) return;
   }

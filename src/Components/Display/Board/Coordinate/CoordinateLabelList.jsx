@@ -2,9 +2,7 @@ import React from "react";
 import CoordinateLabelListIItem from "./CoordinateLabelListItem";
 
 const CoordinateLabelList = ({ isRow }) => {
-  const parentDivClassName = isRow
-    ? "row-column-label"
-    : "row-column-label row-column column-label";
+  const parentDivClassName = isRow ? "row-column-label" : "row-column-label row-column column-label";
 
   const lst = [];
 

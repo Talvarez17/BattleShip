@@ -5,20 +5,8 @@ import Overlay from "./Overlay";
 import "./Board.css";
 
 const Board = ({ state }) => {
-  const {
-    myBoard,
-    placedShips,
-    overlaySettings,
-    title,
-    showConfirmCancelButtons,
-    clearTiles,
-    clickTile,
-    chosenTiles,
-    confirmTiles,
-    shot,
-    active,
-  } = state;
-
+  const { myBoard, placedShips, overlaySettings, title, showConfirmCancelButtons, clearTiles, clickTile, chosenTiles, confirmTiles, shot, active } = state;
+  
   const boardClass = active ? "board active" : "board";
 
   const coordinate = (
@@ -28,30 +16,9 @@ const Board = ({ state }) => {
     </div>
   );
 
-  const shipList = (
-    <ShipList
-      {...{
-        active,
-        placedShips,
-        showConfirmCancelButtons,
-        clearTiles,
-        confirmTiles,
-        shot,
-      }}
-    />
-  );
+  const shipList = <ShipList {...{ active, placedShips, showConfirmCancelButtons, clearTiles, confirmTiles, shot }} />;
 
-  const board = myBoard ? (
-    <>
-      {shipList}
-      {coordinate}
-    </>
-  ) : (
-    <>
-      {coordinate}
-      {shipList}
-    </>
-  );
+  const board = myBoard ? <>{shipList}{coordinate}</> : <>{coordinate}{shipList}</>;
 
   return (
     <div className="whole-board">

@@ -5,20 +5,9 @@ import CoordinateLabelList from "./CoordinateLabelList";
 
 const Coordinate = ({ placedShips, clickTile, chosenTiles, shot, myBoard }) => {
   const lst = [];
+  
   for (let i = 0; i < 10; i++) {
-    lst.push(
-      <CoordinateList
-        {...{
-          key: i,
-          clickTile,
-          row: i,
-          placedShips,
-          chosenTiles,
-          shot,
-          myBoard,
-        }}
-      />
-    );
+    lst.push(<CoordinateList key={i} clickTile={clickTile} row={i} placedShips={placedShips} chosenTiles={chosenTiles} shot={shot} myBoard={myBoard} />);
   }
 
   return (
