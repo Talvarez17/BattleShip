@@ -6,7 +6,7 @@ import { NEW_OPPONENT, NEW_MESSAGE, NEW_GAME, OPPONENT_LEFT, initialState, INITI
 
 const socket = io("localhost:3001");
 
-const useGame = () => {
+const useGame = (viewOnly = false) => {
   const reducers = {
     [NEW_OPPONENT](state, { opponent }) {
       const newGameState = opponent ? 1 : 0;
@@ -250,6 +250,13 @@ const useGame = () => {
         });
     }
   }, [shipTilesState]);
+
+  useEffect(() => {
+    if (viewOnly) {
+      // Connect to a random game without the ability to interact
+      // You can randomly join an existing game as an observer
+    }
+  }, [viewOnly]);
 
   const newGame = () => {
     dispatch({ type: NEW_GAME });

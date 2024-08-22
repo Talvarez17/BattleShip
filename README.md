@@ -95,6 +95,7 @@ useGame is a custom hook that control the flow of the game.
 3. Install all dependencies with `npm install` command
 4. Run the Socket.IO server with `npm run start-server` command
 5. Run the app in the development mode with `npm start` command
+If error: set NODE_OPTIONS=--openssl-legacy-provider
 6. Open the broswer and visit: http://localhost:3000
 
 The page will reload if you make edits. You will also see any lint errors in the console.
