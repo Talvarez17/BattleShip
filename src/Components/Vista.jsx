@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useGame from "../hooks/useGame";
+import Board from "./Display/Board";
 
 export const Vista = () => {
     const { opponentState, myState } = useGame(true);
@@ -13,6 +14,10 @@ export const Vista = () => {
         <div>
             <h1>Viewing Game</h1>
             <div>
+                <div className="display">
+                    <Board state={myState} />
+                    <Board state={opponentState} />
+                </div>
                 {/* Render the boards using opponentState and myState */}
                 {/* Disallow interaction or input */}
             </div>
