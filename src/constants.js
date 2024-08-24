@@ -15,31 +15,30 @@ export const OPPONENTS_TURN = "OPPONENTS_TURN";
 export const SHOT = "SHOT";
 export const OPPONENT_SHOT = "OPPONENT_SHOT";
 export const END = "END";
-
 export const MISSED = "MISSED";
 export const SELECTED = "SELECTED";
 export const CONFIRMED = "CONFIRMED";
 export const HIT = "HIT";
 
-export const INITIAL_MSG_NO_OPPONENT = "There is no player in the room. Waiting for another player...";
-export const INITIAL_MSG_HAVE_OPPONENT = "Another player is already in the room. The game is on!";
-export const MSG_HAVE_OPPONENT = "Another player has entered the game. The game is on!";
-export const MSG_NO_OPPONENT = "The other player left. Waiting for another player...";
-export const MSG_INVALID_TILES = "All tiles have to be connected (either horizontally or vertically).";
-export const MSG_ATTACK = "Your turn to attack.";
-export const MSG_DEFEND = "Opponent's turn to attack.";
-export const MSG_WAITING_FOR_PLAYER = "Waiting for player to join...";
-export const MSG_WIN = "You Won!";
-export const MSG_LOSE = "You Lose.";
-export const MSG_OPPONENT_PLACING_SHIPS = "Opponent is placing ships...";
-export const MSG_ENTER_NEW_GAME = "[NEW GAME] You have entered a new game.";
+export const INITIAL_MSG_NO_OPPONENT = "No hay oponentes en la sala. Esperando un oponente...";
+export const INITIAL_MSG_HAVE_OPPONENT = "Un oponente se ha unido. Comienza el juego!";
+export const MSG_HAVE_OPPONENT = "Un oponente se ha unido. Comienza el juego!";
+export const MSG_NO_OPPONENT = "El oponente abandonó la partida. Esperando a otro oponente...";
+export const MSG_INVALID_TILES = "Debes seleccionar casillas continuas (horizontal o verticalmente).";
+export const MSG_ATTACK = "Es tu turno.";
+export const MSG_DEFEND = "Turno del oponente.";
+export const MSG_WAITING_FOR_PLAYER = "Esperando oponente...";
+export const MSG_WIN = "Victoria";
+export const MSG_LOSE = "Derrota";
+export const MSG_OPPONENT_PLACING_SHIPS = "El oponente esta colocando sus barcos...";
+export const MSG_ENTER_NEW_GAME = "[Juego nuevo] Has iniciado un juego nuevo.";
 
 export const ships = [
-  { name: "Carrier", numOfTiles: 5 },
-  { name: "Battleship", numOfTiles: 4 },
-  { name: "Cruiser", numOfTiles: 3 },
-  { name: "Submarine", numOfTiles: 3 },
-  { name: "Destroyer", numOfTiles: 2 },
+  { name: "Portaviones", numOfTiles: 5 },
+  { name: "Buque de guerra", numOfTiles: 4 },
+  { name: "Crucero", numOfTiles: 3 },
+  { name: "Submarino", numOfTiles: 3 },
+  { name: "Destructor", numOfTiles: 2 },
 ];
 
 // initial state used in the hook useGame
@@ -47,7 +46,7 @@ export const initialState = () => {
   return {
     gameState: 0,
     shipTilesState: 0,
-    messages: [{ time: getCurrentTime(), message: "Welcome to Battleship!" }],
+    messages: [{ time: getCurrentTime(), message: "Bienvenido a Battleship!" }],
     myShips: [],
     myShipsShot: [],
     opponentShips: null,

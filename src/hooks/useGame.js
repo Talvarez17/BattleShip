@@ -294,7 +294,7 @@ const useGame = (viewOnly = false) => {
     myBoard: true,
     placedShips: myShips,
     overlaySettings: showMyOverlay,
-    title: "Your Board",
+    title: "Tu tablero",
     showConfirmCancelButtons,
     clearTiles,
     clickTile: clickTile(true),
@@ -307,7 +307,7 @@ const useGame = (viewOnly = false) => {
   const opponentState = {
     placedShips: opponentShips,
     overlaySettings: showOpponentOverlay,
-    title: "Opponent's Board",
+    title: "Tablero del oponente",
     clickTile: clickTile(),
     chosenTiles: [],
     shot: opponentShipsShot,
