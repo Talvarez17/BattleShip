@@ -5,18 +5,18 @@ export const Welcome = () => {
   const navigate = useNavigate();
 
   const handleViewClick = () => {
-    navigate("/view");
+    navigate("/partidas");
   };
 
   const handlePlayClick = () => {
-    navigate("/play");
+    navigate("/jugar");
   };
 
   return (
     <div>
       <h1>Welcome to the Game</h1>
-      <button onClick={handleViewClick}>View</button>
-      <button onClick={handlePlayClick}>Play</button>
+      <button onClick={handleViewClick}>Ver Partidas</button>
+      <button onClick={handlePlayClick}>Jugar</button>
     </div>
   );
 };

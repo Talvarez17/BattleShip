@@ -11,8 +11,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/view" element={<Vista />} />
-        <Route path="/play" element={<Partidas />} />
+        <Route path="/partidas" element={<Partidas />} />
+        <Route path="/ver" element={<Vista />} />
+        <Route path="/jugar" element={<App />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
