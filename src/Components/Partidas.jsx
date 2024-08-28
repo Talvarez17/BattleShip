@@ -12,6 +12,9 @@ export const Partidas = () => {
             setPartidas(clients);
         });
         socket.emit("obtener-partidas");
+        return () => {
+            socket.off("partidas-actuales")
+        }
     })
 
     return (

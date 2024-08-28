@@ -4,7 +4,7 @@ import { checkIfSameCoordinate, makeNewMessages, makeMsgForWrongTiles, validateS
 import { NEW_OPPONENT, NEW_MESSAGE, NEW_GAME, OPPONENT_LEFT, initialState, INITIAL_MSG_NO_OPPONENT, INITIAL_MSG_HAVE_OPPONENT, MSG_HAVE_OPPONENT, MSG_NO_OPPONENT, ships, CLEAR_TILES, SELECT_TILE, CONFIRM_TILES, MSG_INVALID_TILES, COMPLETE_SELECTION, SET_OPPONENT_SHIPS, OPPONENTS_TURN, MSG_ATTACK, MSG_DEFEND, MSG_WAITING_FOR_PLAYER, MSG_LOSE, MSG_WIN, MSG_OPPONENT_PLACING_SHIPS, MSG_ENTER_NEW_GAME, SHOT, OPPONENT_SHOT, END } from "../constants";
 
 
-const socket = io("http://192.168.137.1:3001");
+const socket = io("http://172.16.21.62:3001");
 
 const useGame = (viewOnly = false) => {
   const reducers = {
@@ -135,6 +135,8 @@ const useGame = (viewOnly = false) => {
     });
 
     socket.on("opponent", (opponent) => {
+      console.log("New opponent");
+      
       dispatch({ opponent, type: NEW_OPPONENT });
     });
 
@@ -229,6 +231,7 @@ const useGame = (viewOnly = false) => {
 
       default:
     }
+    // socket.emit('viewer-states', {opponentState, myState});
   }, [gameState]);
 
   useEffect(() => {
@@ -249,14 +252,16 @@ const useGame = (viewOnly = false) => {
           message: makeMsgForSelectingTiles(name, numOfTiles),
         });
     }
+    
   }, [shipTilesState]);
 
-  useEffect(() => {
-    if (viewOnly) {
-      // Connect to a random game without the ability to interact
-      // You can randomly join an existing game as an observer
-    }
-  }, [viewOnly]);
+  // useEffect(() => {
+  //   socket.on("viewer-states", (states) => {
+  //     console.log(states);
+  //     opponentState = states.opponentState;
+  //     myState = states.myState;
+  //   })
+  // }, [viewOnly]);
 
   const newGame = () => {
     dispatch({ type: NEW_GAME });
@@ -274,6 +279,8 @@ const useGame = (viewOnly = false) => {
   };
 
   const clickTile = (myBoard) => {
+    console.log(myBoard,' AQUÍ SE MANDAN LAS TECLAS');
+    
     if (myBoard) {
       return (coordinate) => {
         if (gameState === 1) dispatch({ type: SELECT_TILE, coordinate });

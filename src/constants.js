@@ -35,7 +35,7 @@ export const MSG_ENTER_NEW_GAME = "[Juego nuevo] Has iniciado un juego nuevo.";
 
 export const ships = [
   { name: "Portaviones", numOfTiles: 5 },
-  { name: "Buque de guerra", numOfTiles: 4 },
+  { name: "Acorazado", numOfTiles: 4 },
   { name: "Crucero", numOfTiles: 3 },
   { name: "Submarino", numOfTiles: 3 },
   { name: "Destructor", numOfTiles: 2 },
