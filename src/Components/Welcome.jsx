@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { io } from "socket.io-client";
+import { SocketContext } from "../context/SocketContext";
 
-const socket = io("http://172.16.21.62:3001");
 
 export const Welcome = () => {
+
+  const socket = useContext(SocketContext);
+
   const navigate = useNavigate();
 
   const handleViewClick = () => {

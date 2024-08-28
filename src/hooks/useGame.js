@@ -1,12 +1,8 @@
-import io from "socket.io-client";
 import { useReducer, useEffect } from "react";
 import { checkIfSameCoordinate, makeNewMessages, makeMsgForWrongTiles, validateShipTiles, makeMsgForSelectingTiles, checkIfLstIncludesCoordinate, isWinner, getLastElm, findSinkShipNameOfCoordinate, makeMsgForSinkShip, makeMsgForShot } from "../helpers";
 import { NEW_OPPONENT, NEW_MESSAGE, NEW_GAME, OPPONENT_LEFT, initialState, INITIAL_MSG_NO_OPPONENT, INITIAL_MSG_HAVE_OPPONENT, MSG_HAVE_OPPONENT, MSG_NO_OPPONENT, ships, CLEAR_TILES, SELECT_TILE, CONFIRM_TILES, MSG_INVALID_TILES, COMPLETE_SELECTION, SET_OPPONENT_SHIPS, OPPONENTS_TURN, MSG_ATTACK, MSG_DEFEND, MSG_WAITING_FOR_PLAYER, MSG_LOSE, MSG_WIN, MSG_OPPONENT_PLACING_SHIPS, MSG_ENTER_NEW_GAME, SHOT, OPPONENT_SHOT, END } from "../constants";
 
-
-const socket = io("http://172.16.21.62:3001");
-
-const useGame = (viewOnly = false) => {
+const useGame = (viewOnly = false, socket) => {
   const reducers = {
     [NEW_OPPONENT](state, { opponent }) {
       const newGameState = opponent ? 1 : 0;

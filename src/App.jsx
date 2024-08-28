@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import Display from "./Components/Display";
 import LogList from "./Components/Log";
 import Heading from "./Components/Heading";
+import { SocketContext } from "./context/SocketContext";
 import useGame from "./hooks/useGame";
 
 const App = () => {
-  const { myState, opponentState, logState } = useGame();
+  const socket = useContext(SocketContext);
+  const {myState, opponentState, logState} = useGame(false, socket);
 
   return (
     <>

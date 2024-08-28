@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom"
-import React, { useEffect, useState } from 'react';
-import { io } from "socket.io-client";
+import { Link, useNavigate } from "react-router-dom"
+import React, { useContext, useEffect, useState } from 'react';
+import { SocketContext } from "../context/SocketContext";
 
-const socket = io("http://172.16.21.62:3001");
 
 export const Partidas = () => {
+    const socket = useContext(SocketContext);
+
     const [partidas, setPartidas] = useState();
+    const navigator = useNavigate();
 
     useEffect(() => {
         socket.on("partidas-actuales", (clients) => {
@@ -16,6 +18,11 @@ export const Partidas = () => {
             socket.off("partidas-actuales")
         }
     })
+
+    const viewGame = (p1, p2) => {
+        socket.emit("view-game", [p1, p2]);
+        navigator("/ver");
+    }
 
     return (
         <>
@@ -30,7 +37,7 @@ export const Partidas = () => {
                             <tr key={partida}>
                                 <td>{partida}</td>
                                 <td>{partidas[partida]}</td>
-                                <td><button disabled={partida == null}>Ver</button></td>
+                                <td><button disabled={partida == null || partidas[partida] == null} onClick={() => {viewGame(partida, partidas[partida])}}>Ver</button></td>
                             </tr>
                         )
                     }

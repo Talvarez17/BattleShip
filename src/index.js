@@ -5,9 +5,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Welcome } from './Components/Welcome';
 import { Partidas } from './Components/Partidas';
 import Vista from './Components/Vista';
+import { SocketProvider } from './context/SocketContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <SocketProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
@@ -16,6 +17,6 @@ ReactDOM.render(
         <Route path="/jugar" element={<App />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </SocketProvider>,
   document.getElementById('root')
 );
