@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import useGame from "../hooks/useGame";
+import useView from "../hooks/useView";
 import Board from "./Display/Board";
 import { SocketContext } from "../context/SocketContext";
 import { Link} from "react-router-dom"
@@ -7,7 +7,9 @@ import "./css/vista.css"
 
 export const Vista = () => {
     const socket = useContext(SocketContext);
-    const { opponentState, myState } = useGame(true, socket);
+    const players = JSON.parse(localStorage.getItem("players"));
+    const state1  = useView(true, socket, players[0]);
+    const state2 = useView(true, socket, players[1]);
 
     useEffect(() => {
         // Modify useGame to include a "viewOnly" mode or filter socket events
@@ -23,8 +25,8 @@ export const Vista = () => {
             </div>
             
             <div className="display">
-                <Board state={myState} />
-                <Board state={opponentState} />
+                <Board state={state1.opponentState} />
+                <Board state={state2.opponentState} />
             </div>
         </div>
     );

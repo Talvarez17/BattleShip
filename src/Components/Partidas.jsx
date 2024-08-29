@@ -21,6 +21,7 @@ export const Partidas = () => {
     })
 
     const viewGame = (p1, p2) => {
+        localStorage.setItem("players", JSON.stringify([p1, p2]));
         socket.emit("view-game", [p1, p2]);
         navigator("/ver");
     }

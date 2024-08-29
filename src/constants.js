@@ -19,6 +19,7 @@ export const MISSED = "MISSED";
 export const SELECTED = "SELECTED";
 export const CONFIRMED = "CONFIRMED";
 export const HIT = "HIT";
+export const SET_VIEWER_STATE = "SET_VIEWER_STATE";
 
 export const INITIAL_MSG_NO_OPPONENT = "No hay oponentes en la sala. Esperando un oponente...";
 export const INITIAL_MSG_HAVE_OPPONENT = "Un oponente se ha unido. Comienza el juego!";
