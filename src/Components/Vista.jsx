@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import useGame from "../hooks/useGame";
 import Board from "./Display/Board";
 import { SocketContext } from "../context/SocketContext";
+import { Link} from "react-router-dom"
+import "./css/vista.css"
 
 export const Vista = () => {
     const socket = useContext(SocketContext);
@@ -13,15 +15,16 @@ export const Vista = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Viewing Game</h1>
-            <div>
-                <div className="display">
-                    <Board state={myState} />
-                    <Board state={opponentState} />
-                </div>
-                {/* Render the boards using opponentState and myState */}
-                {/* Disallow interaction or input */}
+        <div className="game-container">
+            <h1 className="game-title">[ Juego en curso ]</h1>
+
+            <div className="header">
+                <Link to={"/partidas"} className="back-button">Regresar</Link>
+            </div>
+            
+            <div className="display">
+                <Board state={myState} />
+                <Board state={opponentState} />
             </div>
         </div>
     );
