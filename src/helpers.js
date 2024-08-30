@@ -73,26 +73,26 @@ export const makeNewMessages = (messages, message) => {
 };
 
 export const makeMsgForWrongTiles = (name, numOfTiles) => {
-  return `Wrong number of tiles. A ${name.toLowerCase()} has ${numOfTiles} tiles. Try again.`;
+  return `Número incorrecto de casillas selecionadas. Un ${name.toLowerCase()} debe tener ${numOfTiles} casillas. Intentalo de nuevo.`;
 };
 
 export const makeMsgForSelectingTiles = (name, numOfTiles) => {
-  return `Select ${numOfTiles} tiles for your ${name.toLowerCase()}.`;
+  return `Selecciona ${numOfTiles} casillas para tu ${name.toLowerCase()}.`;
 };
 
 export const makeMsgForSinkShip = (isMine, shipName) => {
-  const [subject, object] = isMine ? ["You", "opponent's"] : ["Opponent", "your"];
-  return `${subject} has sunk ${object} ${shipName}.`;
+  const [subject, object] = isMine ? ["Has hundido su", ""] : ["El oponente ha hundido", "tu"];
+  return `${subject} ${object} ${shipName}.`;
 };
 
 export const makeMsgForShot = (isMine, ships, coordinate) => {
   const isHit = whichShipCoordinateIsBelong(ships, coordinate);
-  const subject = isMine ? "You" : "Opponent";
-  const result = isHit ? "HIT!" : "MISSED.";
+  const subject = isMine ? "Disparaste a la casilla" : "El oponente disparó a la casilla";
+  const result = isHit ? "TIRO ACERTADO" : "TIRO FALLADO.";
   const { row, column } = coordinate;
   const columnLetter = columnLabel[column];
   const rowNum = row + 1;
-  return `${subject} just shot at ${columnLetter}${rowNum}: ${result}`;
+  return `${subject} ${columnLetter}${rowNum}: ${result}`;
 };
 
 export const validateShipTiles = (chosenTiles, var1, var2) => {

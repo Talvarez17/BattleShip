@@ -1,20 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Welcome } from './Components/Welcome';
 import { Partidas } from './Components/Partidas';
+import Vista from './Components/Vista';
+import { SocketProvider } from './context/SocketContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <SocketProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/welcome" element={<Welcome/>}></Route>
-        <Route path="/partidas" element={<Partidas/>}></Route>
-        <Route path="/jugar" element={<App />}></Route>
-        <Route path='/*' element={<Welcome/>}></Route>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/partidas" element={<Partidas />} />
+        <Route path="/ver" element={<Vista />} />
+        <Route path="/jugar" element={<App />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </SocketProvider>,
   document.getElementById('root')
 );

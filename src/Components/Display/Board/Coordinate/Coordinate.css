@@ -59,26 +59,26 @@
   display: flex;
 }
 
-.carrier {
+.portaviones {
   background-color: #264653;
   color: #fff;
 }
 
-.battleship {
+.acorazado {
   background-color: #2a9d8f;
   color: #fff;
 }
 
-.cruiser {
+.crucero {
   background-color: #e9c46a;
 }
 
-.submarine {
+.submarino {
   background-color: #f4a261;
   color: #fff;
 }
 
-.destroyer {
+.destructor {
   background-color: #e76f51;
   color: #fff;
 }

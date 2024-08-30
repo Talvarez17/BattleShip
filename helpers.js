@@ -7,11 +7,13 @@ const clientsHelperFunctionGenerator = (clients, socket, io) => {
   const addClient = (avoidOpponent) => {
 
     const keys = getKeys(clients);
-
+    console.log(clients);
+    
     for (let i = 0; i < keys.length; i++) {
       const otherSocketId = keys[i];
+      
       const otherSocketOpponent = clients[otherSocketId];
-
+      
       if (!otherSocketOpponent && otherSocketId !== avoidOpponent) {
         clients[otherSocketId] = socket.id;
         clients[socket.id] = otherSocketId;

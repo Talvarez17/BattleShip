@@ -1,12 +1,8 @@
-import io from "socket.io-client";
 import { useReducer, useEffect } from "react";
 import { checkIfSameCoordinate, makeNewMessages, makeMsgForWrongTiles, validateShipTiles, makeMsgForSelectingTiles, checkIfLstIncludesCoordinate, isWinner, getLastElm, findSinkShipNameOfCoordinate, makeMsgForSinkShip, makeMsgForShot } from "../helpers";
-import { NEW_OPPONENT, NEW_MESSAGE, NEW_GAME, OPPONENT_LEFT, initialState, INITIAL_MSG_NO_OPPONENT, INITIAL_MSG_HAVE_OPPONENT, MSG_HAVE_OPPONENT, MSG_NO_OPPONENT, ships, CLEAR_TILES, SELECT_TILE, CONFIRM_TILES, MSG_INVALID_TILES, COMPLETE_SELECTION, SET_OPPONENT_SHIPS, OPPONENTS_TURN, MSG_ATTACK, MSG_DEFEND, MSG_WAITING_FOR_PLAYER, MSG_LOSE, MSG_WIN, MSG_OPPONENT_PLACING_SHIPS, MSG_ENTER_NEW_GAME, SHOT, OPPONENT_SHOT, END } from "../constants";
+import { SET_VIEWER_STATE, NEW_OPPONENT, NEW_MESSAGE, NEW_GAME, OPPONENT_LEFT, initialState, INITIAL_MSG_NO_OPPONENT, INITIAL_MSG_HAVE_OPPONENT, MSG_HAVE_OPPONENT, MSG_NO_OPPONENT, ships, CLEAR_TILES, SELECT_TILE, CONFIRM_TILES, MSG_INVALID_TILES, COMPLETE_SELECTION, SET_OPPONENT_SHIPS, OPPONENTS_TURN, MSG_ATTACK, MSG_DEFEND, MSG_WAITING_FOR_PLAYER, MSG_LOSE, MSG_WIN, MSG_OPPONENT_PLACING_SHIPS, MSG_ENTER_NEW_GAME, SHOT, OPPONENT_SHOT, END } from "../constants";
 
-
-const socket = io("localhost:3001");
-
-const useGame = () => {
+const useGame = (viewOnly = false, socket) => {
   const reducers = {
     [NEW_OPPONENT](state, { opponent }) {
       const newGameState = opponent ? 1 : 0;
@@ -116,6 +112,11 @@ const useGame = () => {
       return { ...state, myShipsShot: newMyShipsShot, gameState: 3 };
     },
 
+    [SET_VIEWER_STATE](state, { data }) {
+
+      return { ...state, state: data.state, opponentState: data.opponentState };
+    },
+
     [END](state) {
       return { ...state, gameState: 6 };
     },
@@ -135,15 +136,19 @@ const useGame = () => {
     });
 
     socket.on("opponent", (opponent) => {
+      console.log("New opponent");
+      
       dispatch({ opponent, type: NEW_OPPONENT });
     });
 
     socket.on("opponentShips", (opponentShips) => {
       dispatch({ type: SET_OPPONENT_SHIPS, opponentShips });
+      // console.log(opponentShips);
     });
 
     socket.on("shot", (coordinate) => {
       dispatch({ type: OPPONENT_SHOT, coordinate });
+      // console.log(coordinate);
     });
 
     socket.on("end", (coordinate) => {
@@ -249,12 +254,17 @@ const useGame = () => {
           message: makeMsgForSelectingTiles(name, numOfTiles),
         });
     }
+
   }, [shipTilesState]);
 
   const newGame = () => {
     dispatch({ type: NEW_GAME });
     socket.emit("newGame");
   };
+
+  useEffect(() => {
+    socket.emit("viewer-states", { state, opponentState });
+  })
 
   const showOpponentOverlay = gameState === 0 ? MSG_WAITING_FOR_PLAYER : !opponentShips ? MSG_OPPONENT_PLACING_SHIPS : null;
 
@@ -267,6 +277,8 @@ const useGame = () => {
   };
 
   const clickTile = (myBoard) => {
+    // console.log(myBoard, ' AQUÍ SE MANDAN LAS TECLAS');
+
     if (myBoard) {
       return (coordinate) => {
         if (gameState === 1) dispatch({ type: SELECT_TILE, coordinate });
@@ -287,7 +299,7 @@ const useGame = () => {
     myBoard: true,
     placedShips: myShips,
     overlaySettings: showMyOverlay,
-    title: "Your Board",
+    title: "Tu tablero",
     showConfirmCancelButtons,
     clearTiles,
     clickTile: clickTile(true),
@@ -300,7 +312,7 @@ const useGame = () => {
   const opponentState = {
     placedShips: opponentShips,
     overlaySettings: showOpponentOverlay,
-    title: "Opponent's Board",
+    title: "Tablero del oponente",
     clickTile: clickTile(),
     chosenTiles: [],
     shot: opponentShipsShot,

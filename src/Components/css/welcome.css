@@ -1,0 +1,73 @@
+/* Contenedor principal */
+.container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://wallpapers.com/images/hd/battleship-pictures-c75lvd8kvyd3zcpv.jpg');
+    background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+  
+  /* Estilo del título */
+  .title {
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 1rem;
+    width: 100%;
+    font-size: 2rem;
+    margin: 0;
+    border-radius: 1em;
+    padding: 0 1.5em;
+    letter-spacing: 0.5em;
+    z-index: 1; /* Asegura que el título esté encima del fondo */
+  }
+  
+  /* Estilo del div que contiene los botones */
+  .content-box {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté encima del fondo */
+  }
+  
+  /* Estilo de los botones */
+  .btn {
+    font-family: "Libre Baskerville", serif;
+    font-size: large;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    background-color: rgb(209, 105, 26);
+  }
+  
+  .btn:hover {
+    opacity: 0.75;
+  }
+  
+  .btn1 {
+    font-family: "Libre Baskerville", serif;
+    font-size: large;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    background-color: rgb(24, 99, 218);
+  }
+  
+  .btn1:hover {
+    opacity: 0.75;
+  }
+  

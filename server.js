@@ -1,28 +1,36 @@
-const { clientsHelperFunctionGenerator } = require("./helpers");
+// const { clientsHelperFunctionGenerator } = require("./helpers");
 
-const io = require("socket.io")({
-  cors: {
-    origin: ["http://localhost:3000"],
-  },
-});
+// const io = require("socket.io")({
+//   cors: {
+//     origin: ["http://localhost:3000"],
+//   },
+// });
 
-const clients = {};
+// const clients = {};
 
-io.on("connection", (socket) => {
-  const { addClient, removeClient, newGame, sendShips, shot, end } =
-    clientsHelperFunctionGenerator(clients, socket, io);
+// // Definimos lo que sucede con cada conexión
+// io.on("connection", (socket) => {
 
-  addClient();
+//   // Destructuramos los datos que se obtienen del helper
+//   const { addClient, removeClient, newGame, sendShips, shot, end } =
+//     clientsHelperFunctionGenerator(clients, socket, io);
 
-  socket.on("newGame", newGame);
+//   addClient();
 
-  socket.on("ships", sendShips);
+//   socket.on("newGame", newGame);
 
-  socket.on("shot", shot);
+//   socket.on("ships", sendShips);
 
-  socket.on("end", end);
+//   socket.on("shot", shot);
 
-  socket.on("disconnect", removeClient);
-});
+//   socket.on("end", end);
 
-io.listen(3001);
+//   socket.on("disconnect", removeClient);
+
+//   socket.on("viewGame", (gameId) => {
+//     // Logic to let a user join as an observer
+//     // This might involve sending the current game state to the observer
+//   });
+// });
+
+// io.listen(3001);
