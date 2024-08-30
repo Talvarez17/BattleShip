@@ -47,7 +47,7 @@ export const Partidas = () => {
                         </thead>
                         <tbody>
                             {partidas && Object.keys(partidas).map((partida, index) => {
-                                if ((index % 2) > 0 || index === 0) {
+                                if ((index % 2) > 0) {
                                     return (
                                         <tr key={partida}>
                                             <td>{partida}</td>

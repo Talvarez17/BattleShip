@@ -114,7 +114,7 @@ const useView = (viewOnly = true, socket, opponentId) => {
 
         [SET_VIEWER_STATE](state, states) {
             const newState = states.states.state;
-            console.log(newState);
+            // console.log(newState);
             return newState;
         },
 
@@ -145,14 +145,14 @@ const useView = (viewOnly = true, socket, opponentId) => {
         });
 
         socket.on("opponentShips", ({ data, sender }) => {
-            console.log("Escucho opponentShips: " + JSON.stringify(data));
+            // console.log("Escucho opponentShips: " + JSON.stringify(data));
             if (sender === opponentId) {
                 dispatch({ type: SET_OPPONENT_SHIPS, data });
             }
         });
 
         socket.on("shot", ({ data, sender }) => {
-            console.log("Escucho shot: " + data);
+            // console.log("Escucho shot: " + data);
             if (sender === opponentId) {
                 dispatch({ type: OPPONENT_SHOT, data });
             }
@@ -298,7 +298,7 @@ const useView = (viewOnly = true, socket, opponentId) => {
         }
         return (coordinate) => {
             if (gameState === 3) {
-                dispatch({ type: SHOT, coordinate });
+                // dispatch({ type: SHOT, coordinate });
             }
         };
     };

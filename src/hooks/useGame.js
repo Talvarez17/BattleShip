@@ -143,14 +143,12 @@ const useGame = (viewOnly = false, socket) => {
 
     socket.on("opponentShips", (opponentShips) => {
       dispatch({ type: SET_OPPONENT_SHIPS, opponentShips });
-      console.log(opponentShips);
-
+      // console.log(opponentShips);
     });
 
     socket.on("shot", (coordinate) => {
       dispatch({ type: OPPONENT_SHOT, coordinate });
-      console.log(coordinate);
-
+      // console.log(coordinate);
     });
 
     socket.on("end", (coordinate) => {
